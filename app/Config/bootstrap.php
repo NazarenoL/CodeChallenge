@@ -105,3 +105,64 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+/**
+ * Load all the composer included libraries and plugins
+ */
+require APP . '/Vendor/autoload.php';
+
+// Remove and re-prepend CakePHP's autoloader as composer thinks it is the most important.
+// See https://github.com/composer/composer/commit/c80cb76b9b5082ecc3e5b53b1050f76bb27b127b
+spl_autoload_unregister(array('App', 'load'));
+spl_autoload_register(array('App', 'load'), true, true);
+
+// Load all the plugins. Load the bootstrap file to load Payment Model
+CakePlugin::loadAll([
+    'PaymentManager' => [
+        'bootstrap' => true
+    ]
+]);
+
+
+/**
+ * Configure Stripe account settings, and load them depending on the current environment
+ */
+Configure::write('Stripe.test.secret', 'sk_test_ybylJAHEgTUlVq8TW15FcrMu');
+Configure::write('Stripe.test.public', 'pk_test_9St6uh6Lj8VPLBn6lhoxXDTu');
+
+Configure::write('Stripe.live.secret', 'sk_live_Cy2x61W4htHwCcZDqet5vruf');
+Configure::write('Stripe.live.public', 'pk_live_1J5q9S0W4XEyXFyitJUpswc1');
+
+
+/**
+ * Define the different environments
+ * 
+ * Altought the documentation says to save it on EnvironmentUtility.envs,
+ * the correct name was EnvironmentUtility.environments.
+ */
+Configure::write('EnvironmentUtility.environments', [
+    'production' => [
+        'urls' => [
+            'www.example.com'
+        ],
+        'paths' => [
+            '/var/www/html/app/'
+        ]
+    ],
+    'dev' => [
+        'urls' => [
+            'dev.codechallenge',
+            'localhost'
+        ],
+        'paths' => [
+            '/var/www/asugai/app/'
+        ]
+    ]
+]);
+App::uses('EnvironmentUtility', 'EnvironmentManager.Lib');
+
+if (class_exists('EnvironmentUtility') && EnvironmentUtility::is('production')) {
+    Configure::write('Stripe.keys', Configure::read('Stripe.live'));
+} else {
+    Configure::write('Stripe.keys', Configure::read('Stripe.test'));
+}
