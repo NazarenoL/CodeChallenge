@@ -1,0 +1,24 @@
+{
+    "config": {
+        "vendor-dir": "Vendor"
+    },
+    "repositories": [
+        {
+            "url": "https://github.com/asugai/CakePHP-Payment-Manager.git",
+            "type": "vcs"
+        },
+        {
+            "url": "https://github.com/asugai/CakePHP-Notification-Manager.git",
+            "type": "vcs"
+        },
+        {
+            "url": "https://github.com/asugai/CakePHP-Environment-Manager.git",
+            "type": "vcs"
+        }
+    ],
+    "require": {
+        "asugai/cake-php-payment-manager" : "dev-master",
+        "asugai/cake-php-notification-manager" : "dev-master",
+        "asugai/cake-php-environment-manager" : "dev-master"
+    }
+}
