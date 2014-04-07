@@ -1,12 +1,12 @@
 # User specific & automatically generated files #
 #################################################
 /app/Config/database.php
-/app/tmp
+/app/tmp/
 /lib/Cake/Console/Templates/skel/tmp/
 /plugins
-/app/plugins
+/app/Plugins
 /vendors
-/app/vendors
+/app/Vendors
 /build
 /dist
 /tags
