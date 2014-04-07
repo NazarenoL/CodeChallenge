@@ -5,20 +5,24 @@ $(document).ready(function(){
 	 */
 	
 	//Card Number
-	jQuery.validator.addMethod("cardNumber", function(value, element) {
+	$.validator.addMethod("cardNumber", function(value, element) {
 	    return this.optional(element) || Stripe.card.validateCardNumber(value);
 	}, "* Card Number should be valid. Don't use dashes to separate it.");
 
 	//Card expiration date
-	jQuery.validator.addMethod("cardExpires", function(value, element) {
+	$.validator.addMethod("cardExpires", function(value, element) {
 	    return this.optional(element) || Stripe.card.validateExpiry($("#UserExpiration-month").val(), $("#UserExpiration-year").val() );
 	}, "* The expiration date should be valid.");
 
 	//Card CVC/CVV
-	jQuery.validator.addMethod("cardCvc", function(value, element) {
+	$.validator.addMethod("cardCvc", function(value, element) {
 	    return this.optional(element) || Stripe.card.validateCVC(value);
 	}, "* The CVV2/CVC2 code should be valid.");
 	
+	//Non-stripe related: add support for alpha-numeric validation
+	$.validator.addMethod("alphanumeric", function(value, element) {
+        return this.optional(element) || /^[a-z0-9\s]+$/i.test(value);
+    }, "Username must contain only letters or numbers.");
 
 	$("form").validate({
 		//Define a group as both are evaluated togethr
@@ -28,16 +32,23 @@ $(document).ready(function(){
 		rules: {
 			"data[User][name]": {
 				required: true,
+				alphanumeric: true,
+				rangelength: [3, 100]
+
 			},
 			"data[User][surname]": {
 				required: true,
+				alphanumeric: true,
+				rangelength: [3, 100]
 			},
 			"data[User][email]": {
 				required: true,
 				email: true
 			},
 			"data[User][password]": {
-				required: true
+				required: true,
+				rangelength: [6, 10]
+
 			},
 			"data[password2]": {
 				required: true,

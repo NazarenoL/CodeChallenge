@@ -37,4 +37,19 @@ class User extends AppModel {
 			'message' => 'The payment couldn\'t be processed.'
 		)
 	);
+
+	/**
+	 * Callback functions.
+	 * It runs before saving data to the DB
+	 */
+	public function beforeSave($options = array()) {
+	    if (!empty($this->data['User']['password']))
+	    {
+	    	//Hash the password before saving it. Include the app salt
+	        $this->data['User']['password'] = Security::hash($this->data['User']['password'], null, true);
+	        
+	    }
+	    return true;
+	}
+
 }

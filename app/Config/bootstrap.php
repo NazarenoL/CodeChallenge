@@ -164,6 +164,9 @@ Configure::write('EnvironmentUtility.environments', [
 ]);
 App::uses('EnvironmentUtility', 'EnvironmentManager.Lib');
 
+App::uses('Security', 'Utility'); 
+
+
 
 if (class_exists('EnvironmentUtility') && EnvironmentUtility::is('production')) {
     Configure::write('Stripe.keys', Configure::read('Stripe.live'));

@@ -29,24 +29,11 @@ class UsersController extends AppController {
 			    try {
 			    	//Create the customer
 				    $result = PaymentUtility::createCustomer($save['User']['name'] ." " .$save['User']['surname'], $save['User']['stripeToken'], $save['User']['email']);
-				    //PaymentUtility doesn't have any way to retrieve the new customer id, as it's stored in a protected value.
-				    //You could extend that class and add a getter or use the reflection property.
-				    //I choose the second way, as it's shorter 
 
+				    //Change the customer id in the user				    
+    				$this->User->saveField("customerId",$result->id);
 
-				    //Retrieve the new customer id
-				    $custId = $this->_getReflectedPropertyValue($result,'_values');
-				    $custId = $custId['id'];
-
-				    //Get the user from that id
-				    $user = $this->User->findById($save['User']['id']);
-				    //Change the customer id in the user
-				    $user['User']['customerId'] = $custId;
-
-				    //Save the changes
-				    $this->User->save($user['User']);
-
-				    $this->Session->setFlash('Costumer saved! <strong>The costumer id is: ' . $custId .'</strong>', 'alert', array(
+				    $this->Session->setFlash('Customer saved! <strong>The customer id is: ' . $result->id .'</strong>', 'alert', array(
 						'plugin' => 'BoostCake',
 						'class' => 'alert-success'
 					));
