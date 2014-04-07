@@ -120,6 +120,9 @@ spl_autoload_register(array('App', 'load'), true, true);
 CakePlugin::loadAll([
     'PaymentManager' => [
         'bootstrap' => true
+    ],
+    'ApiManager' => [
+        'bootstrap' => true
     ]
 ]);
 
@@ -160,6 +163,7 @@ Configure::write('EnvironmentUtility.environments', [
     ]
 ]);
 App::uses('EnvironmentUtility', 'EnvironmentManager.Lib');
+
 
 if (class_exists('EnvironmentUtility') && EnvironmentUtility::is('production')) {
     Configure::write('Stripe.keys', Configure::read('Stripe.live'));

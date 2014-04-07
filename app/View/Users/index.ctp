@@ -31,7 +31,7 @@ if(!isset($showForm) || $showForm == true) {
 	 */
 	echo $this->Form->inputs(
 		null,
-		array('id'),
+		array('id','stripeToken','customerId'),
 		array(
 			'legend' => 'Personal Info'
 		)

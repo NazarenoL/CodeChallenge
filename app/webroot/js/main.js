@@ -26,8 +26,12 @@ $(document).ready(function(){
             expiration : "data[User][expiration-month] data[User][expiration-year]",
         },
 		rules: {
-			"data[User][name]": "required",
-			"data[User][surname]": "required",
+			"data[User][name]": {
+				required: true,
+			},
+			"data[User][surname]": {
+				required: true,
+			},
 			"data[User][email]": {
 				required: true,
 				email: true
@@ -101,8 +105,11 @@ $(document).ready(function(){
 			var token = response.id;
 			 
 			// Add the token to the form:
-			f.append('<input type="hidden" name="stripeToken" value="' + token + '" />');
-			 
+			f.append('<input type="hidden" name="data[User][stripeToken]" value="' + token + '" />');
+			
+			//Delete the name for all the card fields, so they don't get submitted to our server
+			$(".card-info").removeAttr('name');
+			
 			// Submit the form:
 			f.get(0).submit();
 		}

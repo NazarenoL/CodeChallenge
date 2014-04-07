@@ -583,5 +583,50 @@
             "cakephp",
             "twitter"
         ]
+    },
+    {
+        "name": "asugai/cake-php-api-manager",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/asugai/CakePHP-API-Manager.git",
+            "reference": "916c605ae41be7c0fcc50608f0df0900aed17b35"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/asugai/CakePHP-API-Manager/zipball/916c605ae41be7c0fcc50608f0df0900aed17b35",
+            "reference": "916c605ae41be7c0fcc50608f0df0900aed17b35",
+            "shasum": ""
+        },
+        "require": {
+            "composer/installers": "~1.0"
+        },
+        "time": "2014-01-28 16:56:56",
+        "type": "cakephp-plugin",
+        "extra": {
+            "installer-name": "ApiManager"
+        },
+        "installation-source": "source",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Andre Sugai",
+                "email": "andre@orainteractive.com"
+            }
+        ],
+        "description": "A simple lib to handle common API functions for CakePHP.",
+        "homepage": "http://github.com/asugai/cake-php-api-manager",
+        "keywords": [
+            "api",
+            "cakephp",
+            "exception"
+        ],
+        "support": {
+            "source": "https://github.com/asugai/CakePHP-API-Manager/tree/master",
+            "issues": "https://github.com/asugai/CakePHP-API-Manager/issues"
+        }
     }
 ]

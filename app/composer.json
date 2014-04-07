@@ -14,12 +14,17 @@
         {
             "url": "https://github.com/asugai/CakePHP-Environment-Manager.git",
             "type": "vcs"
+        },
+        {
+            "url": "https://github.com/asugai/CakePHP-API-Manager.git",
+            "type": "vcs"
         }
     ],
     "require": {
         "asugai/cake-php-payment-manager" : "dev-master",
         "asugai/cake-php-notification-manager" : "dev-master",
         "asugai/cake-php-environment-manager" : "dev-master",
+        "asugai/cake-php-api-manager" : "dev-master",
         "slywalker/boost_cake": "*"
     }
 }
