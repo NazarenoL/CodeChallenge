@@ -19,6 +19,7 @@
     "require": {
         "asugai/cake-php-payment-manager" : "dev-master",
         "asugai/cake-php-notification-manager" : "dev-master",
-        "asugai/cake-php-environment-manager" : "dev-master"
+        "asugai/cake-php-environment-manager" : "dev-master",
+        "slywalker/boost_cake": "*"
     }
 }
